@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { MainLayout } from './components/templates/MainLayout';
 
 // Páginas (Pages)
-// Nota: Puedes crear componentes temporales en src/pages/ mientras armas cada uno
 import LoginPage from './pages/LoginPage';
 import CatalogPage from './pages/CatalogPage';
 import OrdersPage from './pages/OrdersPage';
@@ -13,19 +12,8 @@ import CoverageMapPage from './pages/CoverageMapPage';
 import InventoryPage from './pages/InventoryPage';
 import AdminUsersPage from './pages/AdminUsersPage';
 
-// Componente para proteger rutas según token y rol
-const ProtectedRoute = ({ children, allowedRoles }) => {
-  const token = localStorage.getItem('token');
-  const userRole = localStorage.getItem('role'); // 'ADMIN', 'VENDEDOR', 'CONTRATISTA'
-
-  if (!token) {
-    return <Navigate to="/login" replace />;
-  }
-
-  if (allowedRoles && !allowedRoles.includes(userRole)) {
-    return <Navigate to="/" replace />;
-  }
-
+// Componente para desarrollo: deja pasar directo a cualquier vista
+const ProtectedRoute = ({ children }) => {
   return children;
 };
 
@@ -40,7 +28,7 @@ function App() {
         <Route
           path="/"
           element={
-            <ProtectedRoute allowedRoles={['ADMIN', 'VENDEDOR', 'CONTRATISTA']}>
+            <ProtectedRoute>
               <MainLayout>
                 <CatalogPage />
               </MainLayout>
@@ -52,7 +40,7 @@ function App() {
         <Route
           path="/cobertura"
           element={
-            <ProtectedRoute allowedRoles={['ADMIN', 'VENDEDOR', 'CONTRATISTA']}>
+            <ProtectedRoute>
               <MainLayout>
                 <CoverageMapPage />
               </MainLayout>
@@ -64,7 +52,7 @@ function App() {
         <Route
           path="/pedidos"
           element={
-            <ProtectedRoute allowedRoles={['ADMIN', 'VENDEDOR', 'CONTRATISTA']}>
+            <ProtectedRoute>
               <MainLayout>
                 <OrdersPage />
               </MainLayout>
@@ -72,11 +60,11 @@ function App() {
           }
         />
 
-        {/* Cuenta corriente (Solo Contratistas y Administrador) */}
+        {/* Cuenta corriente */}
         <Route
           path="/cuenta-corriente"
           element={
-            <ProtectedRoute allowedRoles={['ADMIN', 'CONTRATISTA']}>
+            <ProtectedRoute>
               <MainLayout>
                 <AccountStatusPage />
               </MainLayout>
@@ -84,11 +72,11 @@ function App() {
           }
         />
 
-        {/* Gestión de Inventario (Solo Vendedor y Administrador) */}
+        {/* Gestión de Inventario */}
         <Route
           path="/inventario"
           element={
-            <ProtectedRoute allowedRoles={['ADMIN', 'VENDEDOR']}>
+            <ProtectedRoute>
               <MainLayout>
                 <InventoryPage />
               </MainLayout>
@@ -96,11 +84,11 @@ function App() {
           }
         />
 
-        {/* Panel de administración (Solo Administrador) */}
+        {/* Panel de administración */}
         <Route
           path="/admin/usuarios"
           element={
-            <ProtectedRoute allowedRoles={['ADMIN']}>
+            <ProtectedRoute>
               <MainLayout>
                 <AdminUsersPage />
               </MainLayout>
