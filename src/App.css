@@ -1,0 +1,17 @@
+.biografia {
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 24px 32px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.biografia h1 {
+  color: #002d56;
+  line-height: 1.3;
+}
+
+.biografia p {
+  color: #555;
+}
