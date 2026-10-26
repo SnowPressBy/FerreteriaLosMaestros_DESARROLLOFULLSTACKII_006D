@@ -1,0 +1,108 @@
+:root {
+  --lm-negro: #111;
+  --lm-naranja: #f57c00;
+  --lm-naranja-oscuro: #d96a00;
+  --lm-gris: #ececec;
+  --lm-gris-borde: #bdbdbd;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--lm-negro);
+}
+
+.font-tech {
+  font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  letter-spacing: 0.02em;
+}
+
+.fw-black { font-weight: 900; }
+
+/* Bloques estructurales */
+.bloque-gris,
+.bloque-estructural {
+  background: var(--lm-gris);
+  border: 2px solid var(--lm-negro);
+}
+.bloque-estructural { background: #fff; }
+.bloque-naranja {
+  background: var(--lm-naranja);
+  color: var(--lm-negro);
+  border: 2px solid var(--lm-negro);
+}
+
+.divisor-seccion { border-bottom: 3px solid var(--lm-negro); }
+.divisor-footer { border-top: 3px solid var(--lm-negro); }
+
+/* Botones */
+.btn-industrial,
+.btn-industrial-naranja,
+.btn-industrial-outline {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  border: 2px solid var(--lm-negro);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  line-height: 1.3;
+}
+.btn-industrial { background: var(--lm-negro); color: #fff; }
+.btn-industrial:hover { background: #333; color: #fff; }
+.btn-industrial-naranja { background: var(--lm-naranja); color: var(--lm-negro); }
+.btn-industrial-naranja:hover { background: var(--lm-naranja-oscuro); color: var(--lm-negro); }
+.btn-industrial-outline { background: transparent; color: var(--lm-negro); }
+.btn-industrial-outline:hover { background: var(--lm-negro); color: #fff; }
+
+/* Menú responsive (controlado por React, sin JS de Bootstrap) */
+.btn-hamburguesa {
+  display: none;
+  background: var(--lm-negro);
+  color: #fff;
+  border: 2px solid var(--lm-negro);
+  padding: 0.3rem 0.8rem;
+  font-weight: 700;
+}
+.menu-colapsable {
+  display: none;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.menu-colapsable.abierto { display: flex; }
+
+@media (max-width: 767.98px) {
+  .btn-hamburguesa { display: inline-block; }
+  .menu-colapsable.abierto { flex-direction: column; width: 100%; }
+}
+@media (min-width: 768px) {
+  .menu-colapsable { display: flex; }
+}
+
+/* Tarjeta de producto */
+.tarjeta-producto {
+  background: #fff;
+  border: 2px solid var(--lm-negro);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.tarjeta-producto .tarjeta-imagen {
+  background: var(--lm-gris);
+  border-bottom: 2px solid var(--lm-negro);
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--lm-gris-borde);
+}
+
+.mapa-cobertura {
+  height: 220px;
+  width: 100%;
+  border: 2px solid var(--lm-negro);
+  z-index: 0;
+}
